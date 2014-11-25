@@ -1,0 +1,89 @@
+@CHARSET "ISO-8859-1";
+
+body {
+margin: 0;
+font-family: 'Droid Sans', sans-serif;
+font-size: 14px;
+line-height: 20px;
+color: #333;
+background-color: #EBEBEB;
+}
+input#filename {
+padding: 10px;
+border: solid 1px #dcdcdc;
+transition: box-shadow 0.3s, border 0.3s;
+}
+h2 {
+text-transform: uppercase;
+font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 700;
+letter-spacing: 1px;
+margin-top: 5%;
+margin-right: 0;
+margin-bottom: 35px;
+margin-left: 0;
+color: #355267;
+font-size: 3em;
+}
+
+td, th {
+  width: 5rem;
+  height: 3rem;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+th {
+  background: lightblue;
+  border-color: white;
+}
+input[type="submit"] {
+display: inline-block;
+padding: 10px 40px;
+background: #355267;
+color: #fff;
+text-transform: uppercase;
+font-size: 16px;
+margin: 20px 0;
+-webkit-border-radius: 40px;
+-moz-border-radius: 40px;
+border-radius: 40px;
+}
+input[type="button"] {
+display: inline-block;
+padding: 10px 40px;
+background: #355267;
+color: #fff;
+text-transform: uppercase;
+font-size: 16px;
+margin: 20px 0;
+-webkit-border-radius: 40px;
+-moz-border-radius: 40px;
+border-radius: 40px;
+}
+#upload {
+background-color: #9DC45F;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-border-radius: 5px;
+border: none;
+padding: 10px 25px 10px 25px;
+color: #FFF;
+text-shadow: 1px 1px 1px #949494;
+}
+h4 {
+text-transform: uppercase;
+font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+font-weight: 700;
+letter-spacing: 1px;
+margin-top: 2%;
+margin-right: 0;
+margin-bottom: 35px;
+margin-left: 0;
+color: #355267;
+font-size: 1.5em;
+}
+tr.odd {background-color: #EEDDEE}
+tr.even {background-color: #EEEEDD}
+#buttons {
+	display:inline;
+}
