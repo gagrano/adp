@@ -32,6 +32,16 @@ public class Login {
     public String loginStur() {
 		return "redirect:/login?company=sturgeon";
 	}
+	
+	@RequestMapping("/ExecViewInterlakes")  
+    public String loginExecInter() {
+		return "redirect:/login?company=interlakes";
+	}
+	
+	@RequestMapping("/ExecViewSturgeon")  
+    public String loginExecStur() {
+		return "redirect:/login?company=sturgeon";
+	}
 
 	
 	@RequestMapping("/login")  
