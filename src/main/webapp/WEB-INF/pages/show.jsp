@@ -27,26 +27,27 @@
 <link rel="stylesheet" type="text/css" href="${cssUrl}">
 </head>  
 <body> 
+<div id="container">
 <div class="mainwrapper">
-<div id="header-main"><img src="images/header_img.jpg" width="1200" height="101"></div> 
+	<div id="header-main"><img src="images/header_img.jpg" width="1200" height="101"></div> 
 
  <div style="float: left;width: 260px;padding-right: 10px;">
- <img style="padding-left: 10px;float: left;padding-top: 25px;padding-right: 20px;" src="http://www.resourcenavigation.com/images/logo-resnav.png" alt="Resnav-logo">
-<h1><strong>Resource Navigation Inc.</strong></h1>
+	<img style="padding-left: 10px;float: left;padding-top: 25px;padding-right: 20px;" src="http://www.resourcenavigation.com/images/logo-resnav.png" alt="Resnav-logo">
+	<h1><strong>Resource Navigation Inc.</strong></h1>
 
-  <div style="clear:both; height:10px;"></div>
+    <div style="clear:both; height:10px;"></div>
 
-<div id="left_nav">
-  <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Payroll</a></li>
-    <li><a href="#">Finance Administration</a></li>
-    <li><a href="#">Reports</a></li>
-    <li><a href="#">Support</a></li>
-    <li><a href="#">GoToAssist</a></li>
-    <li><a href="#">Email Support</a></li>
-  </ul>
-</div>
+	<div id="left_nav">
+	  <ul>
+		<li><a href="#">Home</a></li>
+		<li><a href="#">Payroll</a></li>
+		<li><a href="#">Finance Administration</a></li>
+		<li><a href="#">Reports</a></li>
+		<li><a href="#">Support</a></li>
+		<li><a href="#">GoToAssist</a></li>
+		<li><a href="#">Email Support</a></li>
+	  </ul>
+	</div>
  </div>
  
  
@@ -127,4 +128,5 @@
     	<div class="footerleft">© 2014 - 2015 Resouce Navigation</div>
     	<div class="footerright" style="margin-left: 260px;"> 781-899-8999 (Information) 26 Fox Road, Waltham, MA 02451</div>
     </div>
+</div>
 </body></html>

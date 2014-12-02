@@ -139,17 +139,22 @@ font-size: 14px;
 
 
 .footer {
-	position: relative;
+	position: absolute;
 	bottom: 0;
 	left: 0;
 	font-size: 11px;
 	color: #999;
 	width: 100%;
 	background-color: #1b3651;
+	height:41px;   /* Height of the footer */
 }
 .footer a { color: #bbb; }
 .footer .footerleft { padding: 10px 15px; width: 230px; float: left; background: #3b6998; min-height: 20px; border-right: 1px solid #3c3c3c; color: #fff;}
 .footer .footerright { padding: 10px 15px; margin-left: 260px; text-align: right; color: #ffffff;}
+
+#container {
+   height:100%;
+}
 
 /***** USING ROBOTO FONT *****/
 /****************************/
