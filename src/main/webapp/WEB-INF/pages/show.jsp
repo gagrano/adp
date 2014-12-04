@@ -21,10 +21,43 @@
 		    }
 		    $('#filename').val(filename);
 		});	
+		$('a.delete').click(function(e) {
+			if (confirm("Are you sure?")) {
+				e.preventDefault();
+				var table = document.getElementById('list');
+				var i = $(this).attr('id');
+				var currentRow = -1;
+				for (var z=0; z < table.rows.length; z++) {
+					if (table.rows[z].id == i)	{
+						currentRow = z;
+						break;
+					}
+				}
+				$.ajax({
+					type: 'get',
+					url: '/delete',
+					data: $(this).attr('name'),
+					beforeSend: function() {
+						$("#list").animate({'backgroundColor':'#fb6c6c'},300);
+					},
+					success: function(e) {
+						//$("tr #"+i).slideUp(300,function() {	
+							table.deleteRow(currentRow);
+						//});
+					}
+				});
+			} 
+		});
 	});
 </script>
 <title>Resource Navigation | ADP</title>  
 <link rel="stylesheet" type="text/css" href="${cssUrl}">
+<style type="text/css">
+.delete_pos { 
+	float: right;
+	padding-right: 10px;
+}
+</style>
 </head>  
 <body> 
 <div id="container">
@@ -83,8 +116,12 @@
 		    	</tr>
 		    </thead>
 		    <c:forEach items="${fileMap}" var="hMap" varStatus="loop">
-		        <tr class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
-		            <td><a href="feed?company=${company}&name=${hMap.key}">${hMap.key}</a></td>
+		        <tr id="${loop.index}" class="${loop.index % 2 == 0 ? 'even' : 'odd'}">
+		            <td><a href="feed?company=${company}&name=${hMap.key}">${hMap.key}</a>
+		                <span class="delete_pos">
+		                <a id="${loop.index}" class="delete" name="company=${company}&name=${hMap.key}" href="#"><img alt="" src="images/delete.gif" width="16" height="16"></a>
+		                </span>
+		            </td>
 		            <td>${hMap.value}</td>
 		        </tr>
 		    </c:forEach>

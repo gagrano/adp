@@ -27,14 +27,14 @@
 						<div id="buttons">
 							<input type="submit" value="Import"> 
 							&nbsp;
-							<input type="button" onclick="javascript:window.location='/adp/show?company=${company}'" value="Go Back"/>
+							<input type="button" onclick="javascript:window.location='/show?company=${company}'" value="Cancel"/>
 						</div>			
 					</c:when>
 			        <c:otherwise>
 						New Output File: <a href="feed?company=${company}&name=${fileName}"><b>${feed}</b></a>
 						<p>
 						<div id="buttons">
-							<input type="button" onclick="javascript:window.location='/adp/show?company=${company}'" value="Go Back"/>
+							<input type="button" onclick="javascript:window.location='/show?company=${company}'" value="Done"/>
 						</div>
 					</c:otherwise>
 				</c:choose>

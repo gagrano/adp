@@ -208,5 +208,24 @@ public class Home {
     	model.addObject("message", message);
     	return model;  
     }
+    
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)  
+    public ModelAndView deleteFeed(@RequestParam("company") String company, @RequestParam("name") String name) {
+    	logger.info("Inside delete>>> company:"+company+", filename:"+name);
+    	String fileName = "";
+    	if (rn1.equalsIgnoreCase(company)) {
+    		fileName = outputPathRN1 +"/"+name;
+    	} else if (rn2.equalsIgnoreCase(company)) {
+    		fileName = outputPathRN2 +"/"+name;
+    	}
+    	File f = new File(fileName);
+    	if (f.exists()) f.delete();
+    	else {
+    		logger.error("Such file does not exist: "+fileName);
+    	}
+    	ModelAndView model = new ModelAndView("show");
+    	model.addObject("company", company);
+    	return model;
+    }
 
 }
