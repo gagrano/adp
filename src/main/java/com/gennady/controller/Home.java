@@ -137,12 +137,13 @@ public class Home {
                 //uploadMsg = "You successfully uploaded " + name + " into: "+inputDir+ "/" + name;
                 uploadMsg = "ok";
             } catch (Exception e) {
+            	e.printStackTrace();
             	//uploadMsg = "You failed to upload " + name + " => " + e.getMessage();
             	uploadMsg = "fail";
             }
         } else {
         	//uploadMsg = "You failed to upload " + name + " because the file was empty.";
-        	uploadMsg = "fail";
+        	uploadMsg = "empty";
         }
     	
     	//ModelAndView model = new ModelAndView("upload");
@@ -154,7 +155,8 @@ public class Home {
     							@RequestParam("name") String name, @RequestParam("upload") String upload) {
     	ModelAndView model = new ModelAndView("import");
     	String uploadMsg = ("ok".equals(upload))?  "You successfully uploaded " + name :
-    												"You failed to upload " + name;
+    					   ("empty".equals(upload))?  "File is empty: " + name :	
+    												"Error - Failed to upload " + name;
     	model.addObject("message", uploadMsg);
     	model.addObject("company", company);
     	model.addObject("feed", name);

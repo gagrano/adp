@@ -40,15 +40,16 @@ th {
   width:900px; 
   margin-left:10px;
 }
-
+/*
 .LastName { width: 120px}
 .Email { width: 220px}
+*/
 </style>
 <script>
 $(document).ready( function () {
     $('#list').DataTable({
         "scrollY": 500,
-        "scrollX": true
+        "scrollX": true  
     });
 } );
 </script>
@@ -68,12 +69,30 @@ $(document).ready( function () {
 			        	<thead>
 				        	<tr class="even">
 				        	    <c:forEach items="${line}" var="item" varStatus="loopA">
-				        	        <c:choose>
+				        	       <c:choose>
 			        				<c:when test="${(item == 'Last Name')}">
-					            		<th width="100" class="LastName">
+					            		<th width="100">
+					            	</c:when>
+					            	<c:when test="${(item == 'First Name')}">
+					            		<th width="90">
 					            	</c:when>
 					            	<c:when test="${(item == 'Work E-mail')}">
-					            		<th width="220" class="Email">
+					            		<th width="220">
+					            	</c:when>
+					            	<c:when test="${(item == 'Address 1 Line 1')}">
+					            		<th width="120">
+					            	</c:when>
+					            	<c:when test="${(item == 'Address 1 City')}">
+					            		<th width="75">
+					            	</c:when>
+					            	<c:when test="${(item == 'Home Phone Number')}">
+					            		<th width="75">
+					            	</c:when>
+					            	<c:when test="${(item == 'Work Phone Number')}">
+					            		<th width="75">
+					            	</c:when>
+					            	<c:when test="${(item == 'Tax ID Number')}">
+					            		<th width="70">
 					            	</c:when>
 			        				<c:otherwise>
 			        					<th width="50">
