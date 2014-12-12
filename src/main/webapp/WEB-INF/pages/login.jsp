@@ -27,16 +27,15 @@
                     <div id="wrapper">
                     <img style="width:100%" src="images/header_img.jpg">
                         <div id="login" class="animate form">
-                            <form id="login2" name="loginform" action="login.htm" method="post">
-                                <input type="hidden" name="company" value="${company}"/>
+                            <form id="login2" name="loginform" action="<c:url value='j_spring_security_check'/>" method="post">
                                 <h1>Log in</h1> 
                                 <p> 
                                     <label for="username" class="uname" data-icon="u"> Your username </label>
-                                    <input id="username" name="username" required type="text" placeholder="my username">
+                                    <input id="username" name="j_username" required type="text" placeholder="my username">
                                 </p>
                                 <p> 
                                     <label for="password" class="youpasswd" data-icon="p"> Your password </label>
-                                    <input id="password" name="password" required type="password" placeholder="eg. X8df!90EO"> 
+                                    <input id="password" name="j_password" required type="password" placeholder="eg. X8df!90EO"> 
                                 </p>
                                 <p class="keeplogin"> 
 									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping"> 

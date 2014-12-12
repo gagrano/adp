@@ -15,6 +15,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -58,34 +60,44 @@ public class Home {
 	
 	private static String rn1 = "Sturgeon";
 	private static String rn2 = "InterLakes";
+	private static String rn1User = "sturguser";
+	private static String rn2User = "interuser";
 	
 	  
     @RequestMapping("/show**")  
     public ModelAndView showMessage(WebRequest webRequest) {
     	String fileDir = "", inputDir = "", company = "", uploadMsg = null; 
-    	Map<String, String[]> urlMap = webRequest.getParameterMap();
-    	for (String parameter: urlMap.keySet()) {
-			String value = urlMap.get(parameter)[0];
-			//logger.info("\tParameters[" + name + "] = " + value);
-		    if ("company".equalsIgnoreCase(parameter)) {
-		    	company = value;
-		    } else if ("upload".equalsIgnoreCase(parameter)) {
-		    	if ("ok".equals(value)) {
-		    		uploadMsg = "You successfully uploaded the feed!";
-		    	} else {
-		    		uploadMsg = "You failed to upload the feed!";
-		    	}
-		    }
-    	}
-    	if (rn2.equalsIgnoreCase(company) || "Inter-Lakes".equalsIgnoreCase(company)) {
-    		fileDir = outputPathRN2;
-    		inputDir = inputPathRN2;
-    		message = "Inter-Lakes feeds !";
-    	} else {
-    		fileDir = outputPathRN1;
-    		inputDir = inputPathRN1;
-    		message = "Sturgeon feeds !";
-    	}
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		if (webRequest != null) {
+	    	Map<String, String[]> urlMap = webRequest.getParameterMap();
+	    	for (String parameter: urlMap.keySet()) {
+				String value = urlMap.get(parameter)[0];
+				//logger.info("\tParameters[" + name + "] = " + value);
+			    if ("company".equalsIgnoreCase(parameter)) {
+			    	company = value;
+			    } else if ("upload".equalsIgnoreCase(parameter)) {
+			    	if ("ok".equals(value)) {
+			    		uploadMsg = "You successfully uploaded the feed!";
+			    	} else {
+			    		uploadMsg = "You failed to upload the feed!";
+			    	}
+			    }
+	    	}
+		}
+		if (username != null) {
+	    	if (rn2User.equalsIgnoreCase(username) || "Inter-Lakes".equalsIgnoreCase(company)) {
+	    		fileDir = outputPathRN2;
+	    		inputDir = inputPathRN2;
+	    		company = rn2;
+	    		message = "Inter-Lakes feeds !";
+	    	} else if (rn1User.equalsIgnoreCase(username)) {
+	    		fileDir = outputPathRN1;
+	    		inputDir = inputPathRN1;
+	    		company = rn1;
+	    		message = "Sturgeon feeds !";
+	    	}
+		}
     	File dir = new File(fileDir);
     	HashMap<String, String> hmap = new HashMap<String, String>();
     	SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
