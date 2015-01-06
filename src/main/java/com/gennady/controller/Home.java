@@ -3,8 +3,11 @@ package com.gennady.controller;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,9 +15,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Scope;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -237,6 +242,50 @@ public class Home {
     	else {
     		logger.error("Such file does not exist: "+fileName);
     	}
+    	ModelAndView model = new ModelAndView("show");
+    	model.addObject("company", company);
+    	return model;
+    }
+    
+    @RequestMapping(value = "/download", method = RequestMethod.GET)  
+    public ModelAndView doDownload(HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
+    	int BUFFER_SIZE = 4096;
+    	String company = request.getParameter("company");
+    	String name = request.getParameter("name");
+    	logger.info("Inside download>>> company:"+company+", filename:"+name);
+    	String fileName = "";
+    	if (rn1.equalsIgnoreCase(company)) {
+    		fileName = outputPathRN1 +"/"+name;
+    	} else if (rn2.equalsIgnoreCase(company)) {
+    		fileName = outputPathRN2 +"/"+name;
+    	}
+    	File f = new File(fileName);
+    	// get absolute path of the application
+    	FileInputStream inputStream = new FileInputStream(f);
+    	//String context = request.getContextPath();
+    	response.setContentType("text/csv");
+        response.setContentLength((int) f.length());
+ 
+        // set headers for the response
+        String headerKey = "Content-Disposition";
+        String headerValue = String.format("attachment; filename=\"%s\"",
+                f.getName());
+        response.setHeader(headerKey, headerValue);
+ 
+        // get output stream of the response
+        OutputStream outStream = response.getOutputStream();
+ 
+        byte[] buffer = new byte[BUFFER_SIZE];
+        int bytesRead = -1;
+ 
+        // write bytes read from the input stream into the output stream
+        while ((bytesRead = inputStream.read(buffer)) != -1) {
+            outStream.write(buffer, 0, bytesRead);
+        }
+ 
+        inputStream.close();
+        outStream.close();
     	ModelAndView model = new ModelAndView("show");
     	model.addObject("company", company);
     	return model;
