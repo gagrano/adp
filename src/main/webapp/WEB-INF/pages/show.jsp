@@ -122,7 +122,9 @@
 		                <a id="${loop.index}" class="delete" name="company=${company}&name=${hMap.key}" href="#"><img alt="" src="images/delete.gif" width="16" height="16"></a>
 		                </span>
 		            </td>
-		            <td>${hMap.value}</td>
+		            <td>${hMap.value}&nbsp;&nbsp;
+		            	<a id="dl${loop.index}" class="download" href="/download?company=${company}&name=${hMap.key}">Download</a>
+		            </td>
 		        </tr>
 		    </c:forEach>
 		</table>
@@ -162,7 +164,7 @@
     <div id="subnav"></div>  
     </div>
   <div class="footer">
-    	<div class="footerleft">© 2014 - 2015 Resouce Navigation</div>
+    	<div class="footerleft">© 2014 - 2015 Resource Navigation</div>
     	<div class="footerright" style="margin-left: 260px;"> 781-899-8999 (Information) 26 Fox Road, Waltham, MA 02451</div>
     </div>
 </div>
