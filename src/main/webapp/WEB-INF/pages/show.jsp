@@ -112,7 +112,7 @@
 		    <thead>
 		    	<tr>
 			        <th>File</th>
-			        <th>Date Modified</th>
+			        <th>Processed Date</th>
 		    	</tr>
 		    </thead>
 		    <c:forEach items="${fileMap}" var="hMap" varStatus="loop">
